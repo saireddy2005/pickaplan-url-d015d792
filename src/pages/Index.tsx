@@ -1,13 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import LoginScreen from "@/components/LoginScreen";
+import TravelPlanner from "@/components/TravelPlanner";
 
 const Index = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>Pick a Plan - AI Travel Planner | Discover Amazing Destinations</title>
+        <meta 
+          name="description" 
+          content="Plan your dream trip with Pick a Plan, your AI-powered travel companion. Discover 80+ cities, local cuisines, and get personalized day-wise itineraries." 
+        />
+        <meta name="keywords" content="travel planner, AI travel, trip itinerary, vacation planning, travel destinations" />
+      </Helmet>
+      
+      {isLoggedIn ? (
+        <TravelPlanner />
+      ) : (
+        <LoginScreen onLogin={() => setIsLoggedIn(true)} />
+      )}
+    </>
   );
 };
 
